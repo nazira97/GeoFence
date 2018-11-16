@@ -9,15 +9,17 @@ import com.example.data.RealmOperations
 import com.example.data.database.CrudOperations
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
+/**
+ * Created by Parvez on 15/11/18.
+ */
 class MainActivity : Activity() {
     companion object {
-        const val TAG: String = "KotlinExampleActivity"
+        const val TAG: String = "InternalGeoTrack"
     }
 
     private lateinit var rootLayout: LinearLayout
     val crudOperations = object : CrudOperations(){}
     val realmOperations = object : RealmOperations(this){}
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +33,7 @@ class MainActivity : Activity() {
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         { firstuser ->
-                            Log.e("retrieved data is",firstuser.name)
+                            Log.i("retrieved data is",firstuser.name)
                             showStatus(" Name : "+firstuser.name + " \n Age : " + firstuser.age)
                         },
                         { error ->
@@ -45,8 +47,7 @@ class MainActivity : Activity() {
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         { user ->
-                            Log.e("retrieved data is",user.name)
-                          //  showStatus(user.name)
+                            Log.i("Retrieved data is",user.name)
                         },
                         { error ->
                             Log.e("Error", error.message)
@@ -59,11 +60,11 @@ class MainActivity : Activity() {
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         {  usersDetail->
-                            Log.e("retrieved data is",usersDetail)
+                            Log.i("retrieved data is",usersDetail)
                             showStatus(usersDetail)
                         },
                         { error ->
-                            Log.e("Error", error.message)
+                            Log.e("Error ", error.message)
                         }
                 )
     }
@@ -73,7 +74,6 @@ class MainActivity : Activity() {
     }
 
     private fun showStatus(text: String) {
-        Log.i(TAG, text+" ---------------------------iiii")
         val textView = TextView(this)
         textView.text = text
         rootLayout.addView(textView)

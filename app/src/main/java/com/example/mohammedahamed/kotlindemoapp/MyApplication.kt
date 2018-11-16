@@ -4,6 +4,9 @@ import android.app.Application
 
 import io.realm.Realm
 
+/**
+ * Created by Parvez on 15/11/18.
+ */
 class MyApplication : Application() {
 
     override fun onCreate() {

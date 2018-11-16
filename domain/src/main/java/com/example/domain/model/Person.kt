@@ -5,6 +5,9 @@ import io.realm.RealmObject
 import io.realm.annotations.Ignore
 import io.realm.annotations.PrimaryKey
 
+/**
+ * Created by Parvez on 15/11/18.
+ */
 // Your model has to extend RealmObject. Furthermore, the class must be annotated with open (Kotlin classes are final
 // by default).
 open class Person(@PrimaryKey var id: Long = 0, var name: String = "", var age: Int = 0, var dog: Dog? = null,

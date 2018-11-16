@@ -3,6 +3,9 @@ package com.example.data
 import android.content.Context
 import io.realm.Realm
 
+/**
+ * Created by Parvez on 15/11/18.
+ */
 open class RealmOperations{
     var ctx:Context?=null
     var realm : Realm? = null

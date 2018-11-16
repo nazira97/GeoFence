@@ -11,6 +11,9 @@ import io.realm.kotlin.where
 
 import io.reactivex.Observable;
 
+/**
+ * Created by Parvez on 15/11/18.
+ */
 open class CrudOperations {
 
     fun basicCRUD(realm: Realm): Observable<Person>  {
