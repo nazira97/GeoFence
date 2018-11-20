@@ -8,7 +8,7 @@ import com.example.domain.Person
 import io.reactivex.Observable
 
 interface CrudRepository {
-    abstract fun basicCRUD(ctx: Context): Observable<Person>
+    abstract fun basicCRUD(email: String, password: String): Observable<Person>
     abstract fun findPerson(): Observable<Person>
     abstract fun complexReadWrite(): Observable<String>
     abstract fun destroyRealmObject()
