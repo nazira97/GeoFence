@@ -7,19 +7,20 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.example.data.RealmOperations
 import com.example.data.database.CrudOperations
+import com.example.domain.usecase.CrudUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
 /**
  * Created by Parvez on 15/11/18.
  */
 class MainActivity : Activity() {
+
     companion object {
         const val TAG: String = "InternalGeoTrack"
     }
 
     private lateinit var rootLayout: LinearLayout
-    val crudOperations = object : CrudOperations(){}
-    val realmOperations = object : RealmOperations(this){}
+    val crudUseCase = object : CrudUseCase(CrudOperations()){}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +28,7 @@ class MainActivity : Activity() {
         rootLayout = findViewById(R.id.container)
         rootLayout.removeAllViews()
 
-        var addingPerson = crudOperations.basicCRUD(realmOperations.initialization()!!)
+        var addingPerson = crudUseCase.basicCRUD(this)
         addingPerson
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(AndroidSchedulers.mainThread())
@@ -41,7 +42,7 @@ class MainActivity : Activity() {
                         }
                 )
 
-        var searchPerson = crudOperations.findPerson(realmOperations.getRealmObject()!!)
+        var searchPerson = crudUseCase.findPerson()
         searchPerson
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(AndroidSchedulers.mainThread())
@@ -54,7 +55,7 @@ class MainActivity : Activity() {
                         }
                 )
 
-        var AddingTenPersons = crudOperations.complexReadWrite(realmOperations.getRealmObject()!!)
+        var AddingTenPersons = crudUseCase.complexReadWrite()
         AddingTenPersons
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(AndroidSchedulers.mainThread())
@@ -70,7 +71,7 @@ class MainActivity : Activity() {
     }
     override fun onDestroy() {
         super.onDestroy()
-        realmOperations.destroyObject()
+        crudUseCase.destroyRealmObject()
     }
 
     private fun showStatus(text: String) {
