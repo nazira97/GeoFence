@@ -15,8 +15,8 @@ open class CrudUseCase{
         this.crudRepo = repository
     }
 
-    fun basicCRUD(email: String, password: String): Observable<Person> {
-        return crudRepo.basicCRUD(email, password)
+    fun basicCRUD(ctx: Context): Observable<Person> {
+        return crudRepo.basicCRUD(ctx)
     }
 
     fun findPerson(): Observable<Person> {
