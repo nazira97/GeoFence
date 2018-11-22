@@ -1,17 +1,16 @@
 package com.example.mohammedahamed.kotlindemoapp
 
 import android.app.Activity
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import android.widget.LinearLayout
 import android.widget.TextView
-import com.example.data.RealmOperations
 import com.example.data.database.CrudOperations
+import com.example.data.loginsharedpreference.LoginSharedPreference
 import com.example.domain.usecase.CrudUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers
+import com.example.domain.model.LoginCredential
+import com.example.domain.usecase.LoginUseCase
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.view.*
 
 /**
  * Created by Parvez on 15/11/18.
@@ -22,22 +21,38 @@ class MainActivity : Activity() {
         const val TAG: String = "InternalGeoTrack"
     }
 
-    private lateinit var rootLayout: LinearLayout
     val crudUseCase = object : CrudUseCase(CrudOperations()){}
+    val loginUseCase = object : LoginUseCase(LoginSharedPreference()){}
+    val logincredential = object : LoginCredential(){}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        rootLayout=findViewById(R.id.container)
+        logincredential.email = et_email.text.toString()
+        logincredential.password = et_password.text.toString()
+
+        var storingDetail = loginUseCase.storeCredential(this, logincredential)
+        storingDetail
+                 .observeOn(AndroidSchedulers.mainThread())
+                 .subscribeOn(AndroidSchedulers.mainThread())
+                 .subscribe(
+                         { storeUser ->
+                             Log.d("retrieved data is",storeUser.email)
+                             showStatus(" Name : "+storeUser.email + " \n Age : " + storeUser.password)
+                         },
+                         { error ->
+                             Log.e("Error", error.message)
+                         }
+                 )
 
         var addingPerson = crudUseCase.basicCRUD(this)
         addingPerson
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        { firstuser ->
-                            Log.d("retrieved data is",firstuser.name)
-                            showStatus(" Name : "+firstuser.name + " \n Age : " + firstuser.age)
+                        { firstUser ->
+                            Log.d("retrieved data is",firstUser.name)
+                            showStatus(" Name : "+firstUser.name + " \n Age : " + firstUser.age)
                         },
                         { error ->
                             Log.e("Error", error.message)
@@ -79,7 +94,6 @@ class MainActivity : Activity() {
   private fun showStatus(text: String) {
         val textView = TextView(this)
         textView.text = text
-        rootLayout.addView(textView)
     }
 }
 

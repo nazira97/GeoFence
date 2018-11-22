@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="scrollview_padding_start">10dp</dimen>
+    <dimen name="scrollview_padding_end">10dp</dimen>
+    <dimen name="scrollview_padding_top">10dp</dimen>
+    <dimen name="scrollview_padding_bottom">10dp</dimen>
+    <dimen name="linear_layout_margin_top">40dp</dimen>
+    <dimen name="email_text_size">18sp</dimen>
+    <dimen name="password_text_size">18sp</dimen>
+    <dimen name="password_margin_top">20dp</dimen>
+    <dimen name="login_button_margin_top">300dp</dimen>
+</resources>
