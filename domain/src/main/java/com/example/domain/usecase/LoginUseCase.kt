@@ -11,21 +11,13 @@ import io.reactivex.Observable
 
 open class LoginUseCase {
 
-    internal lateinit var loginRepo: LoginRepository
+    internal var loginRepo: LoginRepository
 
     constructor(repository: LoginRepository){
         this.loginRepo = repository
     }
 
-    fun storeCredential(context: Context, logincredential: LoginCredential): Observable<LoginCredential>{
-        return loginRepo.storeCredential(context, logincredential)
-    }
-
-    fun checkCredential(): Observable<LoginCredential>{
-        return loginRepo.checkCredential()
-    }
-
-    fun destroyRealmObject(){
-        return loginRepo.destroyRealmObject()
+    fun storeCredential(context: Context, loginCredential: LoginCredential): Observable<LoginCredential>{
+        return loginRepo.storeCredential(context, loginCredential)
     }
 }

@@ -9,7 +9,11 @@ import io.reactivex.Observable
 */
 
 interface LoginRepository {
-    abstract fun storeCredential(context: Context, logincredential: LoginCredential) : Observable<LoginCredential>
-    abstract fun checkCredential() : Observable<LoginCredential>
-    abstract fun destroyRealmObject()
+    /**
+     * method to store login credentials
+     *@param context to create Shared Preference instance
+     *@param loginCreds to access variables within LoginCredential model class
+     *@return LoginCredential this returns stored login details
+     */
+    abstract fun storeCredential(context: Context, loginCreds: LoginCredential) : Observable<LoginCredential>
 }

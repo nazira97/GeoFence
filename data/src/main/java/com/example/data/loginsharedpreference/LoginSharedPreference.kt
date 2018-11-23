@@ -1,6 +1,7 @@
 package com.example.data.loginsharedpreference
 
 import android.content.Context
+import android.util.Log
 import com.example.domain.model.LoginCredential
 import com.example.domain.repository.LoginRepository
 import io.reactivex.Observable
@@ -9,21 +10,16 @@ import io.reactivex.Observable
 * Created By Nazira on 21/11/18
 */
 
+/*
+ * This class is used call SharedPreference instance
+ * and pass the login details to SharedPreference
+ */
 class LoginSharedPreference : LoginRepository {
-    var perfs: SharedPreferences? = null
     override fun storeCredential(context: Context, logincredential: LoginCredential): Observable<LoginCredential> {
-        perfs = SharedPreferences(context)
-        perfs!!.email = logincredential.email
-        perfs!!.password = logincredential.password
+        SharedPreferences.init(context)
+        SharedPreferences.write(SharedPreferences.EMAIL, logincredential.email)
+        SharedPreferences.write(SharedPreferences.PASSWORD, logincredential.password)
 
         return Observable.just(logincredential)
-    }
-
-    override fun checkCredential(): Observable<LoginCredential> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun destroyRealmObject() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

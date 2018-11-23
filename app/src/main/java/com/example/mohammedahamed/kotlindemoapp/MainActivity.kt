@@ -23,27 +23,28 @@ class MainActivity : Activity() {
 
     val crudUseCase = object : CrudUseCase(CrudOperations()){}
     val loginUseCase = object : LoginUseCase(LoginSharedPreference()){}
-    val logincredential = object : LoginCredential(){}
+    val loginCredentials = object : LoginCredential(){}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        logincredential.email = et_email.text.toString()
-        logincredential.password = et_password.text.toString()
+        login_btn.setOnClickListener {
+              loginCredentials.email = et_email.text.toString()
+              loginCredentials.password = et_password.text.toString()
 
-        var storingDetail = loginUseCase.storeCredential(this, logincredential)
-        storingDetail
-                 .observeOn(AndroidSchedulers.mainThread())
-                 .subscribeOn(AndroidSchedulers.mainThread())
-                 .subscribe(
-                         { storeUser ->
-                             Log.d("retrieved data is",storeUser.email)
-                             showStatus(" Name : "+storeUser.email + " \n Age : " + storeUser.password)
-                         },
-                         { error ->
-                             Log.e("Error", error.message)
-                         }
-                 )
+             var storingDetail = loginUseCase.storeCredential(this, loginCredentials)
+                 storingDetail
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeOn(AndroidSchedulers.mainThread())
+                        .subscribe(
+                             { storeUser ->
+                                 Log.d("data is stored",storeUser.email+" "+storeUser.password)
+                             },
+                             { error ->
+                                 Log.e("Error", error.message)
+                             }
+                        )
+        }
 
         var addingPerson = crudUseCase.basicCRUD(this)
         addingPerson

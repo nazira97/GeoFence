@@ -1,5 +1,6 @@
 package com.example.data.loginsharedpreference
 
+import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
 
@@ -7,19 +8,46 @@ import android.content.SharedPreferences
 * Created By Nazira on 21/11/18
 */
 
-//class to store login details in shared preference
-open class SharedPreferences(context: Context) {
-    val MyPREFERENCES = "MyPrefs"
-    val EMAIL: String = "email"
-    val PASSWORD: String = "password"
-    val perfs: SharedPreferences = context.getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE)
+/*
+ * It is a Singleton class to store login details in SharedPreference
+ */
+object SharedPreferences {
 
-    var email: String?
-      get() = perfs.getString(EMAIL, "")
-      set(value) = perfs.edit().putString(EMAIL, value).apply()
+    private var mSharedPref: SharedPreferences? = null
+    val EMAIL = "EMAIL"
+    val PASSWORD = "PASSWORD"
 
+    fun init(context: Context) {
+        if (mSharedPref == null)
+            mSharedPref = context.getSharedPreferences(context.packageName, Activity.MODE_PRIVATE)
+    }
 
-    var password: String?
-      get() = perfs.getString(PASSWORD, "")
-      set(value) = perfs.edit().putString(PASSWORD,value).apply()
+    fun read(key: String, defValue: String): String? {
+        return mSharedPref!!.getString(key, defValue)
+    }
+
+    fun write(key: String, value: String?) {
+        val prefsEditor = mSharedPref!!.edit()
+        prefsEditor.putString(key, value)
+        prefsEditor.commit()
+    }
+
+    fun read(key: String, defValue: Boolean): Boolean {
+        return mSharedPref!!.getBoolean(key, defValue)
+    }
+
+    fun write(key: String, value: Boolean) {
+        val prefsEditor = mSharedPref!!.edit()
+        prefsEditor.putBoolean(key, value)
+        prefsEditor.commit()
+    }
+
+    fun read(key: String, defValue: Int): Int {
+        return mSharedPref!!.getInt(key, defValue)
+    }
+
+    fun write(key: String, value: Int?) {
+        val prefsEditor = mSharedPref!!.edit()
+        prefsEditor.putInt(key, value!!).commit()
+    }
 }
