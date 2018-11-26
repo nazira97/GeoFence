@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">KotlinDemoApp</string>
+    <string name="et_email">Email</string>
+    <string name="et_password">Password</string>
+    <string name="btn_login">Login</string>
+    <string name="name">Name</string>
 </resources>
