@@ -1,7 +1,6 @@
 package com.example.mohammedahamed.kotlindemoapp
 
 import android.util.Patterns
-import android.widget.EditText
 import java.util.regex.Pattern
 
 /**
@@ -33,7 +32,7 @@ class Validator {
      * @param data - can be EditText or String
      * @return - true if the password is valid as per the password policy.
      */
-    fun isValidPassword(data: Any, updateUI: Boolean = true): Boolean {
+    fun isValidPassword(data: Any): Boolean {
         val str = data.toString()
         var valid = true
 
