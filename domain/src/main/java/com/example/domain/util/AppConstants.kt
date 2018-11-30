@@ -11,6 +11,4 @@ object AppConstants {
     val GEOFENCE_RADIUS_IN_METERS : Float = 50.0f
     val latitude : Double = 12.9762
     val longitude : Double = 77.7257
-    lateinit var email: String
-    lateinit var password: String
 }

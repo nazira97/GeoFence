@@ -17,10 +17,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import com.example.domain.model.LoginCredential
 import com.example.domain.usecase.LoginUseCase
 import com.example.domain.util.AppConstants.GEOFENCE_RADIUS_IN_METERS
-import com.example.domain.util.AppConstants.email
 import com.example.domain.util.AppConstants.latitude
 import com.example.domain.util.AppConstants.longitude
-import com.example.domain.util.AppConstants.password
 import com.example.mohammedahamed.kotlindemoapp.GeoFencing.GeofenceTransitionsIntentService
 import com.google.android.gms.location.Geofence
 import com.google.android.gms.location.GeofencingClient
@@ -56,12 +54,10 @@ class MainActivity : Activity() {
         login_btn.setOnClickListener {
               loginCredentials.email = et_email.text.toString()
               loginCredentials.password = et_password.text.toString()
-              email = (loginCredentials.email).toString()
-              password = (loginCredentials.password).toString()
-              email_valid = validator.isValidEmail(email)
-              password_valid = validator.isValidPassword(password)
+              email_valid = validator.isValidEmail((loginCredentials.email).toString())
+              password_valid = validator.isValidPassword((loginCredentials.password).toString())
 
-           if ((validator.isValidEmail(email)) && (validator.isValidPassword(password))) {
+           if ((email_valid) && (password_valid)) {
                geoFence()
                var storingDetail = loginUseCase.storeCredential(this, loginCredentials)
                storingDetail
@@ -76,13 +72,13 @@ class MainActivity : Activity() {
                                }
                        )
            }
-           else if(!((validator.isValidEmail(email)) || (validator.isValidPassword(password)))){
+           else if(!((email_valid) || (password_valid))){
                setError(EMAIL_PASSWORD_INVALID)
            }
-           else if(!(validator.isValidEmail(email))){
+           else if(!(email_valid)){
                setError(EMAIL_VALIDATION_MSG)
            }
-           else if(!(validator.isValidEmail(password))){
+           else if(!(password_valid)){
                setError(PASSWORD_VALIDATION_MSG)
            }
         }
