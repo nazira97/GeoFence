@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.util.Log
 import android.widget.TextView
+import android.widget.Toast
 import com.example.data.database.CrudOperations
 import com.example.data.loginsharedpreference.LoginSharedPreference
 import com.example.domain.usecase.CrudUseCase
@@ -16,8 +17,10 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import com.example.domain.model.LoginCredential
 import com.example.domain.usecase.LoginUseCase
 import com.example.domain.util.AppConstants.GEOFENCE_RADIUS_IN_METERS
+import com.example.domain.util.AppConstants.email
 import com.example.domain.util.AppConstants.latitude
 import com.example.domain.util.AppConstants.longitude
+import com.example.domain.util.AppConstants.password
 import com.example.mohammedahamed.kotlindemoapp.GeoFencing.GeofenceTransitionsIntentService
 import com.google.android.gms.location.Geofence
 import com.google.android.gms.location.GeofencingClient
@@ -32,6 +35,11 @@ class MainActivity : Activity() {
 
     companion object {
         const val TAG: String = "InternalGeoTrack"
+        private val EMAIL_VALIDATION_MSG = "Enter a valid email address"
+        private val PASSWORD_VALIDATION_MSG = "Enter a valid password"
+        private var email_valid: Boolean = true
+        private var password_valid: Boolean = true
+        private val EMAIL_PASSWORD_INVALID = "Email and Password invalid"
     }
     //to access location APIs
     lateinit var geofencingClient: GeofencingClient
@@ -39,29 +47,44 @@ class MainActivity : Activity() {
     val crudUseCase = object : CrudUseCase(CrudOperations()){}
     val loginUseCase = object : LoginUseCase(LoginSharedPreference()){}
     val loginCredentials = object : LoginCredential(){}
+    val validator = object : Validator(){}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        geoFence()
-
         login_btn.setOnClickListener {
               loginCredentials.email = et_email.text.toString()
               loginCredentials.password = et_password.text.toString()
+              email = (loginCredentials.email).toString()
+              password = (loginCredentials.password).toString()
+              email_valid = validator.isValidEmail(email)
+              password_valid = validator.isValidPassword(password)
 
-             var storingDetail = loginUseCase.storeCredential(this, loginCredentials)
-                 storingDetail
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribeOn(AndroidSchedulers.mainThread())
-                        .subscribe(
-                             { storeUser ->
-                                 Log.d("data is stored",storeUser.email+" "+storeUser.password)
-                             },
-                             { error ->
-                                 Log.e("Error", error.message)
-                             }
-                        )
+           if ((validator.isValidEmail(email)) && (validator.isValidPassword(password))) {
+               geoFence()
+               var storingDetail = loginUseCase.storeCredential(this, loginCredentials)
+               storingDetail
+                       .observeOn(AndroidSchedulers.mainThread())
+                       .subscribeOn(AndroidSchedulers.mainThread())
+                       .subscribe(
+                               { storeUser ->
+                                   Log.d("data is stored", storeUser.email + " " + storeUser.password)
+                               },
+                               { error ->
+                                   Log.e("Error", error.message)
+                               }
+                       )
+           }
+           else if(!((validator.isValidEmail(email)) || (validator.isValidPassword(password)))){
+               setError(EMAIL_PASSWORD_INVALID)
+           }
+           else if(!(validator.isValidEmail(email))){
+               setError(EMAIL_VALIDATION_MSG)
+           }
+           else if(!(validator.isValidEmail(password))){
+               setError(PASSWORD_VALIDATION_MSG)
+           }
         }
 
         var addingPerson = crudUseCase.basicCRUD(this)
@@ -178,6 +201,9 @@ class MainActivity : Activity() {
                 .setInitialTrigger(GeofencingRequest.INITIAL_TRIGGER_ENTER)
                 .addGeofences(listOf(geofence))
                 .build()
+    }
+    private fun setError(error: String?) {
+        Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
     }
 }
 

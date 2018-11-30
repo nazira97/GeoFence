@@ -3,10 +3,14 @@ package com.example.mohammedahamed.kotlindemoapp
 import android.util.Patterns
 import java.util.regex.Pattern
 
+/*
+* Created By Nazira on 28/11/18
+*/
+
 /**
  * This Validator class is used to validate Login details
  */
-class Validator {
+open class Validator {
 
     /**
      * Checks if the email is valid.
