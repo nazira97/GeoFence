@@ -24,6 +24,11 @@ android {
         }
     }
 
+    lintOptions {
+        abortOnError true
+        quiet true
+        ignoreWarnings false
+    }
 }
 
 dependencies {
