@@ -4,6 +4,7 @@
     android:paddingEnd="@dimen/scrollview_padding_end"
     android:paddingTop="@dimen/scrollview_padding_top"
     android:paddingBottom="@dimen/scrollview_padding_bottom"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
@@ -11,6 +12,13 @@
         android:layout_marginTop="@dimen/linear_layout_margin_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:paddingTop="@dimen/image_padding_top"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/cnx" />
         <EditText
             android:gravity="start"
             android:hint="@string/et_email"
@@ -18,6 +26,7 @@
             android:textStyle="bold"
             android:textSize="@dimen/email_text_size"
             android:inputType="textEmailAddress"
+            android:layout_marginTop="@dimen/email_margin_top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <EditText

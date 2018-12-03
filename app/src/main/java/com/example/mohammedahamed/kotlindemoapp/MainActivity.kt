@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.util.Log
 import android.widget.TextView
+import android.widget.Toast
 import com.example.data.database.CrudOperations
 import com.example.data.loginsharedpreference.LoginSharedPreference
 import com.example.domain.usecase.CrudUseCase
@@ -32,6 +33,11 @@ class MainActivity : Activity() {
 
     companion object {
         const val TAG: String = "InternalGeoTrack"
+        private val EMAIL_VALIDATION_MSG = "Enter a valid email address"
+        private val PASSWORD_VALIDATION_MSG = "Enter a valid password"
+        private var email_valid: Boolean = true
+        private var password_valid: Boolean = true
+        private val EMAIL_PASSWORD_INVALID = "Email and Password invalid"
     }
     //to access location APIs
     lateinit var geofencingClient: GeofencingClient
@@ -39,29 +45,42 @@ class MainActivity : Activity() {
     val crudUseCase = object : CrudUseCase(CrudOperations()){}
     val loginUseCase = object : LoginUseCase(LoginSharedPreference()){}
     val loginCredentials = object : LoginCredential(){}
+    val validator = object : Validator(){}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        geoFence()
-
         login_btn.setOnClickListener {
               loginCredentials.email = et_email.text.toString()
               loginCredentials.password = et_password.text.toString()
+              email_valid = validator.isValidEmail((loginCredentials.email).toString())
+              password_valid = validator.isValidPassword((loginCredentials.password).toString())
 
-             var storingDetail = loginUseCase.storeCredential(this, loginCredentials)
-                 storingDetail
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribeOn(AndroidSchedulers.mainThread())
-                        .subscribe(
-                             { storeUser ->
-                                 Log.d("data is stored",storeUser.email+" "+storeUser.password)
-                             },
-                             { error ->
-                                 Log.e("Error", error.message)
-                             }
-                        )
+           if ((email_valid) && (password_valid)) {
+               geoFence()
+               var storingDetail = loginUseCase.storeCredential(this, loginCredentials)
+               storingDetail
+                       .observeOn(AndroidSchedulers.mainThread())
+                       .subscribeOn(AndroidSchedulers.mainThread())
+                       .subscribe(
+                               { storeUser ->
+                                   Log.d("data is stored", storeUser.email + " " + storeUser.password)
+                               },
+                               { error ->
+                                   Log.e("Error", error.message)
+                               }
+                       )
+           }
+           else if(!((email_valid) || (password_valid))){
+               setError(EMAIL_PASSWORD_INVALID)
+           }
+           else if(!(email_valid)){
+               setError(EMAIL_VALIDATION_MSG)
+           }
+           else if(!(password_valid)){
+               setError(PASSWORD_VALIDATION_MSG)
+           }
         }
 
         var addingPerson = crudUseCase.basicCRUD(this)
@@ -178,6 +197,9 @@ class MainActivity : Activity() {
                 .setInitialTrigger(GeofencingRequest.INITIAL_TRIGGER_ENTER)
                 .addGeofences(listOf(geofence))
                 .build()
+    }
+    private fun setError(error: String?) {
+        Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
     }
 }
 
