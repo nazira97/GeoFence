@@ -66,6 +66,8 @@ class MainActivity : Activity() {
                        .subscribe(
                                { storeUser ->
                                    Log.d("data is stored", storeUser.email + " " + storeUser.password)
+                                   val intent = Intent(this@MainActivity, TimeSheetActivity::class.java)
+                                   startActivity(intent)
                                },
                                { error ->
                                    Log.e("Error", error.message)
