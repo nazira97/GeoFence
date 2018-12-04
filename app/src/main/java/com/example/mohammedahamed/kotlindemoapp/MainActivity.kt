@@ -17,6 +17,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import com.example.domain.model.LoginCredential
 import com.example.domain.usecase.LoginUseCase
 import com.example.domain.util.AppConstants.GEOFENCE_RADIUS_IN_METERS
+import com.example.domain.util.AppConstants.TAG
 import com.example.domain.util.AppConstants.latitude
 import com.example.domain.util.AppConstants.longitude
 import com.example.mohammedahamed.kotlindemoapp.GeoFencing.GeofenceTransitionsIntentService
@@ -32,7 +33,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : Activity() {
 
     companion object {
-        const val TAG: String = "InternalGeoTrack"
         private val EMAIL_VALIDATION_MSG = "Enter a valid email address"
         private val PASSWORD_VALIDATION_MSG = "Enter a valid password"
         private var email_valid: Boolean = true
