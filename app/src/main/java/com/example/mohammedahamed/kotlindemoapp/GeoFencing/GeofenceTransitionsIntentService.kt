@@ -4,7 +4,7 @@ import android.app.IntentService
 import android.content.Intent
 import android.util.Log
 import android.widget.Toast
-import com.example.data.database.TimeStorage
+import com.example.data.repository.EntryExitDataRepository
 import com.example.domain.model.EntryExitTime
 import com.example.domain.usecase.EntryExitUseCase
 import com.example.domain.util.AppConstants.TAG
@@ -22,7 +22,7 @@ import java.util.*
  * This is the Service to perform Geofence Transition in background
  */
 class GeofenceTransitionsIntentService : IntentService("GeoTransition") {
-    private val entryexitUseCase = object : EntryExitUseCase(TimeStorage()){}
+    private val entryExitCase = object : EntryExitUseCase(EntryExitDataRepository()){}
     val entryExit = object : EntryExitTime(){}
 
     override fun onHandleIntent(intent: Intent?) {
@@ -54,7 +54,7 @@ class GeofenceTransitionsIntentService : IntentService("GeoTransition") {
                 Log.d(TAG, "exit" + " " + entryExit.type + " " + entryExit.time)
             }
 
-            var addingEntryExitTime = entryexitUseCase.storeTime(this, entryExit)
+            var addingEntryExitTime = entryExitCase.storeTime(this, entryExit)
             addingEntryExitTime
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(AndroidSchedulers.mainThread())

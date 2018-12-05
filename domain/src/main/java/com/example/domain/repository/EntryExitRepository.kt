@@ -15,7 +15,7 @@ interface EntryExitRepository {
      *@param entryexitTime to access variables within EntryExitTime model class
      *@return Boolean returns true when data is stored to database successfully
      */
-    abstract fun storeTime(ctx: Context,entryexitTime:EntryExitTime): Observable<Boolean>
+    abstract fun storeTime(ctx: Context,entryExitTime:EntryExitTime): Observable<Boolean>
 
     /**
      * Used to destroy RealmObject

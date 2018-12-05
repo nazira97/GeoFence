@@ -16,8 +16,8 @@ open class EntryExitUseCase {
         this.entryRepo = repository
     }
 
-    fun storeTime(ctx: Context, entryexitTime:EntryExitTime ):Observable<Boolean> {
-        return entryRepo.storeTime(ctx,entryexitTime)
+    fun storeTime(ctx: Context, entryExitTime:EntryExitTime ):Observable<Boolean> {
+        return entryRepo.storeTime(ctx,entryExitTime)
     }
 
     fun destroyRealmObject() {
