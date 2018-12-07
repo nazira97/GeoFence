@@ -4,10 +4,16 @@ import android.app.IntentService
 import android.content.Intent
 import android.util.Log
 import android.widget.Toast
-import com.example.mohammedahamed.kotlindemoapp.MainActivity.Companion.TAG
+import com.example.data.repository.EntryExitDataRepository
+import com.example.domain.model.EntryExitTime
+import com.example.domain.usecase.EntryExitUseCase
+import com.example.domain.util.AppConstants.TAG
 import com.example.mohammedahamed.kotlindemoapp.R
 import com.google.android.gms.location.Geofence
 import com.google.android.gms.location.GeofencingEvent
+import io.reactivex.android.schedulers.AndroidSchedulers
+import java.util.*
+
 /*
  * Created by Kusuma on 22-11-18
  */
@@ -16,6 +22,8 @@ import com.google.android.gms.location.GeofencingEvent
  * This is the Service to perform Geofence Transition in background
  */
 class GeofenceTransitionsIntentService : IntentService("GeoTransition") {
+    private val entryExitCase = object : EntryExitUseCase(EntryExitDataRepository()){}
+    val entryExit = object : EntryExitTime(){}
 
     override fun onHandleIntent(intent: Intent?) {
         Log.d(TAG, " Service Started running")
@@ -34,9 +42,33 @@ class GeofenceTransitionsIntentService : IntentService("GeoTransition") {
 
             // Get the geofences that were triggered.
             val triggeringGeofences = geofencingEvent.triggeringGeofences
-            Log.d(TAG, "ID 00000000000000000000000000" + triggeringGeofences[0].requestId);
+            entryExit.time = (Calendar.getInstance().getTime()).toString()
 
-            Toast.makeText(this, "Entered", Toast.LENGTH_SHORT).show()
+            if (geofenceTransition == Geofence.GEOFENCE_TRANSITION_ENTER) {
+                entryExit.type = "Entry"
+                Log.d(TAG, "entry" + " " +entryExit.type + " " +  entryExit.time)
+
+            }
+            else if (geofenceTransition == Geofence.GEOFENCE_TRANSITION_EXIT) {
+                entryExit.type = "Exit"
+                Log.d(TAG, "exit" + " " + entryExit.type + " " + entryExit.time)
+            }
+
+            var addingEntryExitTime = entryExitCase.storeTime(this, entryExit)
+            addingEntryExitTime
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeOn(AndroidSchedulers.mainThread())
+                    .subscribe(
+                            {storeTime ->
+                                if(storeTime){
+                                    Log.d(TAG, "Location Entered")
+                                    Toast.makeText(this," Entered Location " + " " + entryExit.time + " " + entryExit.type, Toast.LENGTH_LONG).show()
+                                }
+                            },
+                            { error ->
+                                Log.e("Error", error.message)
+                            }
+                    )
 
         } else {
             // Log the error.
