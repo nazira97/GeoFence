@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import com.example.data.loginsharedpreference.SharedPreferences
 import com.example.domain.model.EntryExitTime
+import com.example.domain.model.TimeSheetData
 import com.example.domain.util.AppConstants
 import io.realm.Realm
 import io.realm.kotlin.createObject
@@ -54,6 +55,20 @@ object RealmOperations{
         var timestore = realm!!.where<EntryExitTime>().findFirst()
         if (timestore != null) {
             Log.d(AppConstants.TAG, "Retrieved data->"+timestore.email +  timestore.time + timestore.type)
+        }
+    }
+
+    fun insertTimeSheetData(timeSheetData: TimeSheetData){
+        realm!!.executeTransaction{
+            var projectDetail = realm!!.createObject<TimeSheetData>()
+            projectDetail.date = timeSheetData.date
+            projectDetail.projectCode = timeSheetData.projectCode
+            Log.d(AppConstants.TAG, "Stored data->" + projectDetail.date + " " + projectDetail.projectCode)
+            realm!!.insert(projectDetail)
+        }
+        var projectDetail = realm!!.where<TimeSheetData>().findFirst()
+        if (projectDetail != null) {
+            Log.d(AppConstants.TAG, "Retrieved data->"+ projectDetail.date + " " + projectDetail.projectCode)
         }
     }
 }
