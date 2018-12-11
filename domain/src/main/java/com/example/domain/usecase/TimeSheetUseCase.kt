@@ -16,7 +16,7 @@ open class TimeSheetUseCase {
         this.timeSheetRepo = repository
     }
 
-    fun timeSheet(ctx: Context, timeSheetData: TimeSheetData): Observable<Boolean>{
+    fun storeTimeSheetData(ctx: Context, timeSheetData: TimeSheetData): Observable<Boolean>{
         return timeSheetRepo.timeSheet(ctx,timeSheetData)
     }
 

@@ -1,116 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/drawable_green_gradient">
+    style="@style/LinearLayoutStyle">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/fragment_ts_tv_margin_top"
-        android:layout_marginTop="@dimen/fragment_ts_tv_margin_top"
-        android:layout_marginEnd="@dimen/fragment_ts_tv_margin_top"
-        android:orientation="horizontal"
+        style="@style/LinearLayoutI0Style"
         android:weightSum="5">
 
         <TextView
-            android:layout_width="10dp"
-            android:layout_height="wrap_content"
+            style="@style/TextViewFontStyle"
             android:layout_weight="1"
-            android:text="@string/fragment_ts_tv_date"
-            android:textColor="@color/black"
-            android:textSize="@dimen/fragment_ts_tv_date_size"
-            android:textStyle="bold" />
+            android:text="@string/fragment_ts_tv_date"/>
 
         <TextView
-            android:layout_width="@dimen/fragment_ts_tv_date_layout_width"
-            android:layout_height="wrap_content"
+            style="@style/DateFontStyle"
             android:id="@+id/tv_date"
-            android:layout_weight="1.5"
-            android:hint="@string/fragment_ts_et_date"
-            android:textColor="@color/black"
-            android:textSize="@dimen/fragment_ts_et_date_size" />
+            android:layout_weight="1.5"/>
 
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/btn_date"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="@dimen/fragment_ts_ib_calender_margin_left"
-            android:background="@drawable/calender" />
+            style="@style/CalendarIBStyle"
+            android:id="@+id/btn_date" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/fragment_ts_tv_margin_top"
-        android:layout_marginEnd="@dimen/fragment_ts_tv_margin_top"
-        android:orientation="horizontal"
-        android:weightSum="4">
+       style="@style/LinearLayoutI1Style"
+       android:weightSum="4">
 
         <LinearLayout
-            android:layout_width="@dimen/fragment_ts_linear_layout_width"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:orientation="vertical">
+            style="@style/LinearLayoutI2Style"
+            android:layout_weight="3">
 
             <ImageButton
-                android:layout_width="@dimen/fragment_ts_btn_add_layout_width_height"
-                android:layout_height="@dimen/fragment_ts_btn_add_layout_width_height"
-                android:id="@+id/btn_add"
-                android:layout_marginStart="@dimen/fragment_ts_bt_add_margin_left"
-                android:layout_marginTop="@dimen/fragment_ts_tv_margin_top"
-                android:background="@drawable/add_circle_black" />
+                style="@style/AddIBFontStyle"
+                android:id="@+id/btn_add"/>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/fragment_ts_ib_add_project" />
+                style="@style/CustomLayoutStyle"
+                android:text="@string/fragment_ts_ib_add_project"/>
 
         </LinearLayout>
 
         <ToggleButton
+            style="@style/ToggleIBStyle"
             android:id="@+id/toggleButton"
-            android:layout_width="@dimen/fragment_ts_tb_layout_width"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:layout_weight="1"
-            android:text="@string/fragment_ts_togglebutton"
-            android:textOff="@string/fragment_ts_togglebutton_day"
-            android:textOn="@string/fragment_ts_togglebutton_week" />
+            android:text="@string/fragment_ts_togglebutton"/>
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/CustomLayoutStyle"
             android:layout_weight="1"
             android:orientation="vertical">
 
             <ImageButton
-                android:layout_width="@dimen/fragment_ts_tv_date_layout_width"
-                android:layout_height="@dimen/fragment_ts_tv_date_layout_width"
-                android:id="@+id/btn_done"
-                android:layout_marginStart="@dimen/fragment_ts_bt_done_margin_left"
-                android:layout_marginTop="@dimen/fragment_ts_tv_margin_top"
-                android:background="@drawable/done_icon" />
+                style="@style/DoneIBStyle"
+                android:id="@+id/btn_done"/>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/fragment_ts_tv_done_margin_left"
-                android:text="@string/fragment_ts_ib_done" />
+               style="@style/CustomLayoutStyle"
+               android:layout_marginStart="@dimen/fragment_ts_tv_done_margin_left"
+               android:text="@string/fragment_ts_ib_done" />
 
         </LinearLayout>
 
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/editTextContainer"
-        android:layout_marginTop="@dimen/fragment_ts_tv_margin_top"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        style="@style/LinearLayoutI3Style"
+        android:id="@+id/editTextContainer">
     </LinearLayout>
 
 </LinearLayout>

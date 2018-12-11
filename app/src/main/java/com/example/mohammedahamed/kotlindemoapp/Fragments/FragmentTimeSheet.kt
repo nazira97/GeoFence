@@ -68,7 +68,7 @@ class FragmentTimeSheet : Fragment() {
         }
 
         rootView.btn_done.setOnClickListener {
-            var addingTimeSheet = timeSheetCase.timeSheet(requireContext(), projectData)
+            var addingTimeSheet = timeSheetCase.storeTimeSheetData(requireContext(), projectData)
             addingTimeSheet
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(AndroidSchedulers.mainThread())
