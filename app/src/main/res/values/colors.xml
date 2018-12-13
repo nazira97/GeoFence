@@ -6,4 +6,7 @@
     <color name="indigo">#0D4F8B</color>
     <color name="white">#FFFFFF</color>
     <color name="light_blue">#6195C1</color>
+    <color name="black">#000000</color>
+    <!--Gradient color green -->
+    <color name="darkGreen">#CCFFE5</color>
 </resources>

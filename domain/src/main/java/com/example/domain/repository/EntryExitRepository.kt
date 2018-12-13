@@ -10,7 +10,7 @@ import io.reactivex.Observable
 
 interface EntryExitRepository {
     /**
-     * method to Geo-fence Transition time
+     * method to store Geo-fence Transition time
      *@param ctx to create Shared Preference instance
      *@param entryexitTime to access variables within EntryExitTime model class
      *@return Boolean returns true when data is stored to database successfully

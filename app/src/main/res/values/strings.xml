@@ -16,4 +16,13 @@
     <string name="title_home">Home</string>
     <string name="title_time_sheet">Time Sheet</string>
     <string name="attendance_marking_pending_days">No. of days attendance not Marked:</string>
+
+    <string name="fragment_ts_tv_date">Date :</string>
+    <string name="fragment_ts_et_date">MM/DD/YYYY</string>
+    <string name="fragment_ts_ib_add_project">Add Project</string>
+    <string name="fragment_ts_ib_done">Done</string>
+    <string name="fragment_ts_togglebutton">Toggle button</string>
+    <string name="fragment_ts_togglebutton_day">Select: Day</string>
+    <string name="fragment_ts_togglebutton_week">Week</string>
+    <string name="enter_something">Enter Project Code</string>
 </resources>
