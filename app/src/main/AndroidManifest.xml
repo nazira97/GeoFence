@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.mohammedahamed.kotlindemoapp">
+    package="com.concentrix.geo_track.timesheet">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".SplashActivity"
+            android:name="com.concentrix.geo_track.timesheet.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,12 +24,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name="com.concentrix.geo_track.timesheet.MainActivity"></activity>
 
-        <service android:name=".GeoFencing.GeofenceTransitionsIntentService" />
+        <service android:name="com.concentrix.geo_track.timesheet.GeoFencing.GeofenceTransitionsIntentService" />
 
         <activity
-            android:name=".TimeSheetActivity"
+            android:name="com.concentrix.geo_track.timesheet.TimeSheetActivity"
             android:label="@string/title_activity_time_sheet"></activity>
     </application>
 
