@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/LinearLayoutStyle">
+
+    <LinearLayout
+        style="@style/LinearLayoutI0Style"
+        android:weightSum="5">
+
+        <TextView
+            style="@style/TextViewFontStyle"
+            android:layout_weight="1"
+            android:text="@string/fragment_ts_tv_date"/>
+
+        <TextView
+            style="@style/DateFontStyle"
+            android:id="@+id/tv_date"
+            android:layout_weight="1.5"/>
+
+        <ImageButton
+            style="@style/CalendarIBStyle"
+            android:id="@+id/btn_date" />
+
+    </LinearLayout>
+
+    <LinearLayout
+       style="@style/LinearLayoutI1Style"
+       android:weightSum="4">
+
+        <LinearLayout
+            style="@style/LinearLayoutI2Style"
+            android:layout_weight="3">
+
+            <ImageButton
+                style="@style/AddIBFontStyle"
+                android:id="@+id/btn_add"/>
+
+            <TextView
+                style="@style/CustomLayoutStyle"
+                android:text="@string/fragment_ts_ib_add_project"/>
+
+        </LinearLayout>
+
+        <ToggleButton
+            style="@style/ToggleIBStyle"
+            android:id="@+id/toggleButton"
+            android:layout_weight="1"
+            android:text="@string/fragment_ts_togglebutton"/>
+
+        <LinearLayout
+            style="@style/CustomLayoutStyle"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageButton
+                style="@style/DoneIBStyle"
+                android:id="@+id/btn_done"/>
+
+            <TextView
+               style="@style/CustomLayoutStyle"
+               android:layout_marginStart="@dimen/fragment_ts_tv_done_margin_left"
+               android:text="@string/fragment_ts_ib_done" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/LinearLayoutI3Style"
+        android:id="@+id/editTextContainer">
+    </LinearLayout>
+
+</LinearLayout>

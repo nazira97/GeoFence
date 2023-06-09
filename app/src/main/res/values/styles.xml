@@ -1,0 +1,100 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="LinearLayoutStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:background">@drawable/drawable_green_gradient</item>
+    </style>
+    
+    <style name="LinearLayoutI0Style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+    
+    <style name="TextViewFontStyle">
+        <item name="android:layout_width">10dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/fragment_ts_tv_date_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="DateFontStyle">
+        <item name="android:layout_width">@dimen/fragment_ts_tv_date_layout_width</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:hint">@string/fragment_ts_et_date</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/fragment_ts_et_date_size</item>
+    </style>
+
+    <style name="CalendarIBStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_marginStart">@dimen/fragment_ts_ib_calender_margin_left</item>
+        <item name="android:background">@drawable/calender</item>
+    </style>
+
+    <style name="LinearLayoutI1Style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_marginStart">@dimen/fragment_ts_tv_margin_top</item>
+        <item name="android:layout_marginEnd">@dimen/fragment_ts_tv_margin_top</item>
+    </style>
+    
+    <style name="LinearLayoutI2Style">
+        <item name="android:layout_width">@dimen/fragment_ts_linear_layout_width</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+    
+    <style name="AddIBFontStyle">
+        <item name="android:layout_width">@dimen/fragment_ts_btn_add_layout_width_height</item>
+        <item name="android:layout_height">@dimen/fragment_ts_btn_add_layout_width_height</item>
+        <item name="android:layout_marginStart">@dimen/fragment_ts_bt_add_margin_left</item>
+        <item name="android:layout_marginTop">@dimen/fragment_ts_tv_margin_top</item>
+        <item name="android:background">@drawable/add_circle_black</item>
+    </style>
+    
+    <style name="CustomLayoutStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    
+    <style name="ToggleIBStyle">
+        <item name="android:layout_width">@dimen/fragment_ts_tb_layout_width</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textOff">@string/fragment_ts_togglebutton_day</item>
+        <item name="android:textOn">@string/fragment_ts_togglebutton_week</item>
+    </style>
+    
+    <style name="DoneIBStyle">
+        <item name="android:layout_width">@dimen/fragment_ts_tv_date_layout_width</item>
+        <item name="android:layout_height">@dimen/fragment_ts_tv_date_layout_width</item>
+        <item name="android:layout_marginStart">@dimen/fragment_ts_bt_done_margin_left</item>
+        <item name="android:layout_marginTop">@dimen/fragment_ts_tv_margin_top</item>
+        <item name="android:background">@drawable/done_icon</item>
+    </style>
+
+    <style name="LinearLayoutI3Style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_marginTop">@dimen/fragment_ts_tv_margin_top</item>
+    </style>
+</resources>

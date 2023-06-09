@@ -1,0 +1,49 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingStart="@dimen/scrollview_padding_start"
+    android:paddingEnd="@dimen/scrollview_padding_end"
+    android:paddingTop="@dimen/scrollview_padding_top"
+    android:paddingBottom="@dimen/scrollview_padding_bottom"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/linear_layout_margin_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:paddingTop="@dimen/image_padding_top"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/title_icon" />
+        <EditText
+            android:gravity="start"
+            android:hint="@string/et_email"
+            android:id="@+id/et_email"
+            android:textStyle="bold"
+            android:textSize="@dimen/email_text_size"
+            android:inputType="textEmailAddress"
+            android:layout_marginTop="@dimen/email_margin_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/et_password"
+            android:hint="@string/et_password"
+            android:inputType="textPassword"
+            android:textStyle="bold"
+            android:textSize="@dimen/password_text_size"
+            android:gravity="start"
+            android:layout_marginTop="@dimen/password_margin_top"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/login_btn"
+            android:text="@string/btn_login"
+            android:layout_marginTop="@dimen/login_button_margin_top"/>
+    </LinearLayout>
+</ScrollView>

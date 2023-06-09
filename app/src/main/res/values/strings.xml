@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">KotlinDemoApp</string>
+    <string name="et_email">Email</string>
+    <string name="et_password">Password</string>
+    <string name="btn_login">Login</string>
+    <string name="name">Name</string>
+
+    <string name="geofence_unknown_error">Unknown error: the Geofence service is not available now.</string>
+    <string name="geofence_not_available">Geofence service is not available now. Go to Settings>Location>Mode and choose High accuracy.</string>
+    <string name="geofence_too_many_geofences">Your app has registered too many geofences.</string>
+    <string name="geofence_too_many_pending_intents">You have provided too many PendingIntents to the addGeofences() call.</string>
+    <string name="API_key">You have provided too many PendingIntents to the addGeofences() call.</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyC7zA_1vXj7h5OjUhCYKLNmT_BuBEqJDyk</string>
+    <string name="geofence_transition_invalid_type">INVALID GEOFENCE</string>
+    <string name="title_activity_time_sheet">TimeSheetActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_time_sheet">Time Sheet</string>
+    <string name="attendance_marking_pending_days">No. of days attendance not Marked:</string>
+
+    <string name="fragment_ts_tv_date">Date :</string>
+    <string name="fragment_ts_et_date">MM/DD/YYYY</string>
+    <string name="fragment_ts_ib_add_project">Add Project</string>
+    <string name="fragment_ts_ib_done">Done</string>
+    <string name="fragment_ts_togglebutton">Toggle button</string>
+    <string name="fragment_ts_togglebutton_day">Select: Day</string>
+    <string name="fragment_ts_togglebutton_week">Week</string>
+    <string name="enter_something">Enter Project Code</string>
+</resources>
